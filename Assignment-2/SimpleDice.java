@@ -20,6 +20,7 @@ public class SimpleDice {
 	    currentRollValue = rollDice();
 	    if (currentRollValue != 1) {
 		sumValue = sumValue + currentRollValue;
+		System.out.println(currentRollValue);
 
 	    }
 
@@ -29,7 +30,7 @@ public class SimpleDice {
 	    }
 	}
 	
-	System.out.println("Total value until rolled = " + sumValue);
+	System.out.println("Total value until 1 is rolled = " + sumValue);
     }
 
     //method to generate random number between 1 and 6
