@@ -1,31 +1,53 @@
 package theIronYard;
 
+import java.util.Scanner;
+
 public class SimpleCraps {
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-	SimpleCraps simpleCraps = new SimpleCraps();
-
 	System.out.println("|| Simaple Craps Game  || \n************************* \n");
-	
-	
 
-	simpleCraps.rulesOfTheGame();
+	boolean playAgain = true;
 
-    }
+	while (playAgain == true) {
+	    SimpleCraps simpleCraps = new SimpleCraps();
+	    simpleCraps.winOrLose();
 
-    public void rulesOfTheGame() {
+	    System.out.println("\n\n Enter y to play again :");
+	    String input = sc.next();
 
-	int combinedDiceRoll = rollTwoDice();
+	    if (input.equals("y") || input.equals("Y")) {
+		playAgain = true;
+	    }
 
-	if (combinedDiceRoll == 7) {
-	    System.out.printf("Roll is %d ! Winner !", combinedDiceRoll);
+	    else {
+		playAgain = false;
+		System.out.println("Game exiting ....");
+		break;
+	    }
 
 	}
 
-	if (combinedDiceRoll == 2 || combinedDiceRoll == 3 || combinedDiceRoll == 12) {
+    }
 
-	    System.out.printf("Roll is %d ....sorry, it was a loser ! Game ends now...", combinedDiceRoll);
+    public void winOrLose() {
+
+	int numberOfRolls = 1;
+	int combinedDiceRoll = rollTwoDice();
+	System.out.println("  First Roll = " + combinedDiceRoll);
+
+	if (combinedDiceRoll == 7) {
+	    System.out.printf("Roll value =  %d .... Congrats ! You hit it right the first time ! ", combinedDiceRoll);
+	    System.out.println(" ");
+
+	}
+
+	else if (combinedDiceRoll == 2 || combinedDiceRoll == 3 || combinedDiceRoll == 12) {
+
+	    System.out.printf("Roll value = %d ....sorry, it was a loser ! Game ends now...", combinedDiceRoll);
+	    System.out.println(" ");
 
 	}
 
@@ -34,25 +56,34 @@ public class SimpleCraps {
 	    int pointSet = combinedDiceRoll;
 	    int subsequentCombinedDiceRoll = rollTwoDice();
 
-	    System.out.printf("Point is set @  %d and subsequent roll is %d", pointSet, subsequentCombinedDiceRoll);
-	    System.out.println(" ");
+	    numberOfRolls++;
+	    System.out.print("Roll: " + numberOfRolls + "  ");
 
 	    if (pointSet == subsequentCombinedDiceRoll)
 
 	    {
-		System.out.printf("Winner !! ", subsequentCombinedDiceRoll);
+
+		System.out.printf("Roll value = %d \n", subsequentCombinedDiceRoll);
+		System.out.println("Congrats, you won !");
+		System.out.println("~~~~~~~~end~~~~~~~~");
 		break;
 	    }
 
-	    if (subsequentCombinedDiceRoll == 7) {
-		System.out.printf("Loser !! ", subsequentCombinedDiceRoll);
+	    else if (subsequentCombinedDiceRoll == 7) {
+
+		System.out.printf("Roll value = %d \n", subsequentCombinedDiceRoll);
+		System.out.println(" Sorry, you lost !");
+		System.out.println("~~~~~~~~end~~~~~~~~");
 		break;
+
+	    }
+
+	    else {
+		System.out.println("Roll Value = " + subsequentCombinedDiceRoll);
 
 	    }
 
 	}
-
-	
 
     }
 
@@ -71,7 +102,7 @@ public class SimpleCraps {
     // method to generate random number between 1 and 6
     public int rollDice() {
 	int RollValue = 1 + (int) (Math.random() * 6); // generates random value
-						       // between 1 -6
+						       // between 1-6
 	return RollValue;
 
     }
