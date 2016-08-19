@@ -1,6 +1,5 @@
 package ssa;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
 
 public class RPNCalculator {
 
@@ -10,21 +9,21 @@ public class RPNCalculator {
 	rpn.eval();
     }
 
-    //  Method to evaluate 
+    //  Method to evaluate the operation 
     public void eval()
 
     {
-	String numberToBeEvalauted = ("4 5 * 1 +");
-	System.out.println("Calculating " + numberToBeEvalauted);
-	rpnCalc(numberToBeEvalauted);
+	String expressionToBeEvalauted = ("4 5 * 1 ^");
+	System.out.println("Calculating " + expressionToBeEvalauted);
+	 Calc(expressionToBeEvalauted);
 
     }
     
  
 
-    public void rpnCalc(String expr) {
+    public void Calc(String expr) {
 
-	Deque<Integer> stack = new ArrayDeque<Integer>();
+	Stack<Integer> stack = new Stack<Integer>();
 
 	System.out.println("Input\tOperation\tStack after");
 
